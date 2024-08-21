@@ -9,6 +9,10 @@ public class TestCostumer {
         costumer.setEmail("pp@mail.com");
         System.out.println(costumer.getEmail());
 
+        costumer.createUser();
+        costumer.createUser();
+        costumer.listUser();
+
     }
 
 }

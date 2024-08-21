@@ -1,5 +1,8 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Costumer extends User{
 
     private String costumerType;
@@ -25,16 +28,32 @@ public class Costumer extends User{
         this.costumerType = costumerType;
     }
 
+    List<ArrayList<Object>> users = new ArrayList<>(); //Array list general
+
+
     //Metodos
 
     @Override
     public void createUser() {
         super.createUser();
+        ArrayList<Object> user = new ArrayList<>(); //Para guardar como una lista
+        System.out.println("Ingrese el tipo de costumer: ");
+        costumerType = sc.nextLine();
+        user.add(idUser); //Agregar este valor al ArrayList
+        user.add(userName);
+        user.add(email);
+        String userTypeCost = userType.getTypeName();
+        user.add(userTypeCost);
+
+        user.add(costumerType);
     }
 
     @Override
     public void listUser() {
         super.listUser();
+        for (Object user: users){
+            System.out.println(user);
+        }
     }
 
     @Override

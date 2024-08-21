@@ -1,11 +1,17 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public abstract class User implements UtilUser {
 
-    private int idUser;
-    private String userName;
+    Scanner sc = new Scanner(System.in);
+
+    protected int idUser;
+    protected String userName;
     private String lastName;
-    private String email;
+    protected String email;
     private String phone;
     private String address;
     private String city;
@@ -124,8 +130,32 @@ public abstract class User implements UtilUser {
         this.password = password;
     }
 
+    //Metodos
+
+
     @Override
     public void createUser() {
+
+
+
+        System.out.println("Ingrese el id del usuario: ");
+        idUser = sc.nextInt();
+
+        sc.nextLine(); //Se crea para evitar el salto de linea
+
+        System.out.println("Ingrese el nombre de usuario: ");
+        userName = sc.nextLine();
+
+
+        System.out.println("Ingrese el correo: ");
+        email = sc.nextLine();
+
+
+        System.out.println("Tipo de usuario: ");
+        String userTypeCostumer = userType.getTypeName();
+
+
+        //users.add(user); //Guardar en el array list mas general
 
     }
 
