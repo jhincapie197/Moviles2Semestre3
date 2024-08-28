@@ -136,8 +136,6 @@ public abstract class User implements UtilUser {
     @Override
     public void createUser() {
 
-
-
         System.out.println("Ingrese el id del usuario: ");
         idUser = sc.nextInt();
 

@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 public class Costumer extends User{
@@ -28,24 +29,29 @@ public class Costumer extends User{
         this.costumerType = costumerType;
     }
 
-    List<ArrayList<Object>> users = new ArrayList<>(); //Array list general
+
+    List<List<Object>> users = new ArrayList<>();
 
 
     //Metodos
 
     @Override
     public void createUser() {
+
+        ArrayList<Object> user = new ArrayList<Object>(); //Para guardar como una lista
+
         super.createUser();
-        ArrayList<Object> user = new ArrayList<>(); //Para guardar como una lista
         System.out.println("Ingrese el tipo de costumer: ");
         costumerType = sc.nextLine();
-        user.add(idUser); //Agregar este valor al ArrayList
+
+        user.add(idUser);
         user.add(userName);
         user.add(email);
-        String userTypeCost = userType.getTypeName();
-        user.add(userTypeCost);
-
+        user.add(userType.getTypeName());
         user.add(costumerType);
+        user.add(users);
+
+
     }
 
     @Override
