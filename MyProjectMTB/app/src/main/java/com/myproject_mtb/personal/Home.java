@@ -29,6 +29,13 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        btnInicioSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                irInicioSesion();
+            }
+        });
+
     }
 
     public void irRegistro(){
@@ -36,7 +43,9 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
     public void irInicioSesion(){
-        Intent intent = new Intent();
+
+        Intent intent = new Intent(this,inicio_sesion.class );
+        startActivity(intent);
     }
 
 }
