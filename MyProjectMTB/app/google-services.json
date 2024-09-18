@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "652252049100",
+    "project_id": "myprojectmtbshop",
+    "storage_bucket": "myprojectmtbshop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652252049100:android:c8759269875b7d98061c69",
+        "android_client_info": {
+          "package_name": "com.myproject_mtb.personal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUg6GkVvEOB1wFlJ9UquwDKq73eDo8Jj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652252049100:android:d5033285dd5f8e6d061c69",
+        "android_client_info": {
+          "package_name": "com.myprojectmtbshop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUg6GkVvEOB1wFlJ9UquwDKq73eDo8Jj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
