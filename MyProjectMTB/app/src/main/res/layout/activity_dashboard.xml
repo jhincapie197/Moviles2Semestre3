@@ -12,88 +12,60 @@
         android:id="@+id/btn_volver_home"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="20dp"
         android:backgroundTint="@color/black"
         android:text="Home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="303dp"
+        tools:layout_editor_absoluteY="17dp" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="16dp"
-        android:text="Categorías"
+        android:text="Dashboard"
         android:textColor="@color/black"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toStartOf="@+id/btn_volver_home"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="108dp"
+        tools:layout_editor_absoluteY="110dp" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginBottom="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:srcCompat="@drawable/mtb1" />
+        android:layout_width="180dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/mtb1"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="179dp" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="179dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bicinino" />
+        android:layout_width="180dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/bicinino"
+        tools:layout_editor_absoluteX="215dp"
+        tools:layout_editor_absoluteY="179dp" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginBottom="135dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:srcCompat="@drawable/biciruta" />
+        android:layout_width="180dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/biciruta"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="397dp" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="135dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:srcCompat="@drawable/biciherramienta" />
+        android:layout_width="180dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/biciherramienta"
+        tools:layout_editor_absoluteX="215dp"
+        tools:layout_editor_absoluteY="397dp" />
 
     <Button
         android:id="@+id/salir_sesion"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
         android:backgroundTint="@color/black"
         android:text="Salir"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="631dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
