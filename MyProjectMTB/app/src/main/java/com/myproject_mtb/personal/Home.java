@@ -44,7 +44,7 @@ public class Home extends AppCompatActivity {
     }
     public void irInicioSesion(){
 
-        Intent intent = new Intent(this,inicio_sesion.class );
+        Intent intent = new Intent(this, InicioSesion.class);
         startActivity(intent);
     }
 
