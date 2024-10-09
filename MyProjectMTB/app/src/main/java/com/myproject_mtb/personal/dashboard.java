@@ -23,11 +23,11 @@ public class DashBoard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         //btnVolverHome = findViewById(R.id.btn_volver_home);
-        btnSalir = findViewById(R.id.salir_sesion);
-        imageBtnIrDatosUsuario = findViewById(R.id.imageView2);
-        imageIrBiciNinos = findViewById(R.id.imageView3);
-        imageIrBiciRuta = findViewById(R.id.imageView4);
-        imageIrBiciTaller = findViewById(R.id.imageView5);
+        btnSalir = findViewById(R.id.btn_cerrar_sesion);
+        imageBtnIrDatosUsuario = findViewById(R.id.btnIrBiciMontana);
+        imageIrBiciNinos = findViewById(R.id.btnIrBiciNino);
+        imageIrBiciRuta = findViewById(R.id.btnIrBiciClasica);
+        imageIrBiciTaller = findViewById(R.id.btnIrBiciTaller);
 
         /*btnVolverHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,9 +49,6 @@ public class DashBoard extends AppCompatActivity {
                 CerrarSesion();
             }
         });
-
-
-
 
     }
 
