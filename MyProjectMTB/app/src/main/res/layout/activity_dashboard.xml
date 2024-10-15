@@ -55,14 +55,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@android:drawable/sym_def_app_icon" />
+                app:srcCompat="@drawable/mtb1" />
 
             <ImageButton
                 android:id="@+id/btnIrBiciNino"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@android:drawable/sym_def_app_icon" />
+                app:srcCompat="@drawable/bicinino" />
         </LinearLayout>
 
         <LinearLayout
@@ -75,14 +75,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@android:drawable/sym_def_app_icon" />
+                app:srcCompat="@drawable/biciruta" />
 
             <ImageButton
                 android:id="@+id/btnIrBiciTaller"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@android:drawable/sym_def_app_icon" />
+                app:srcCompat="@drawable/biciherramienta" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
