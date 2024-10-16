@@ -59,7 +59,7 @@ public class InicioSesion extends AppCompatActivity {
     }
 
     public void iniciarSesionConEmail (String email, String password){
-        auth.createUserWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
