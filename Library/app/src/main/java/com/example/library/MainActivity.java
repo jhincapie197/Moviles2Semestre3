@@ -1,18 +1,30 @@
 package com.example.library;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,9 +33,13 @@ public class MainActivity extends AppCompatActivity {
     Spinner editorial;
     Switch savailable;
     ImageButton bSave, bSearch, bEdit, bDelete, bList;
+    TextView message;
 
     //Generar el array con las opciones del Spinner (editorial)
     String[] arrayEditorial = {"Oveja Negra", "Prentice Hall"};
+
+    //Instanciar objeto del FirebaseFirestore para acceder a la base de datos de FireStore
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
     @Override
@@ -37,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         //Referenciar los objetos con cada id respectivo del archivo xml
+        message = findViewById(R.id.tvMessage);
         idBook = findViewById(R.id.etIdBook);
         name = findViewById(R.id.etName);
         author = findViewById(R.id.etAuthor);
@@ -51,5 +68,55 @@ public class MainActivity extends AppCompatActivity {
         //Poblar el spinner con el array y luego con el arrayAdapter
         ArrayAdapter<String> arrayadp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_checked, arrayEditorial);
         editorial.setAdapter(arrayadp);
+
+        //Eventos de cada boton
+        bSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mIdBook = idBook.getText().toString();
+                String mName = name.getText().toString();
+                String mAuthor = author.getText().toString();
+                String mEditorial = editorial.getSelectedItem().toString();
+                int mAvailable = savailable.isChecked() ? 1 : 0;
+                if (checkDataBook(mIdBook, mName, mAuthor)){//Estos datos estan diligenciados
+                    //Guardar el libro en la BDs de FireStore en la colección book
+                    //Crear objeto de la clase Map para agregar el documento en la colección
+                    Map<String, Object> mapBook = new HashMap<>();
+                    //Asignar a cada key su valor respectivo
+                    mapBook.put("idbook", mIdBook);
+                    mapBook.put("name", mName);
+                    mapBook.put("author", mAuthor);
+                    mapBook.put("editorial", mEditorial);
+                    mapBook.put("available", mAvailable);
+                    //Guardar el documento
+                    db.collection("book")
+                            .add(mapBook)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    message.setTextColor(Color.parseColor("#008F39"));
+                                    message.setText("Libro agregado exitosamente...");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    message.setTextColor(Color.parseColor("#FF0000"));
+                                    message.setText("No se agrego el libro. Comuniquese con el proveedor del aplicativo");
+                                }
+                            });
+                }
+                else{
+                    message.setTextColor(Color.parseColor("#FF0000"));
+                    message.setText("Debe ingresar todos los datos del libro");
+                }
+            }
+        });
+
+
+    }
+
+    private boolean checkDataBook(String mIdBook, String mName, String mAuthor) {
+        return !mIdBook.isEmpty() && !mName.isEmpty() && !mAuthor.isEmpty();
     }
 }
