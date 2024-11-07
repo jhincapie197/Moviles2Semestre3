@@ -18,10 +18,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,6 +74,41 @@ public class MainActivity extends AppCompatActivity {
         editorial.setAdapter(arrayadp);
 
         //Eventos de cada boton
+
+        bSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!idBook.getText().toString().isEmpty()){
+                    //Buscar el libro a traves del idBook
+                    db.collection("book")
+                            .whereEqualTo("idbook", idBook.getText().toString())
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()){
+                                        if (!task.getResult().isEmpty()){
+                                            for(QueryDocumentSnapshot document: task.getResult()){
+                                                name.setText(document.getString("name"));
+                                                author.setText(document.getString("author"));
+                                                editorial.setSelection(document.getString("editorial").equals("Oveja Negra") ? 0 : 1);
+                                                savailable.setChecked(document.getDouble("available") == 1 ? true :false);
+                                            }
+                                        }
+                                        else{
+                                            message.setTextColor(Color.parseColor("#FF4545"));
+                                            message.setText("El id del libro NO existe. Intentelo con otro");
+                                        }
+                                    }
+                                }
+                            });
+                }else{
+                    message.setTextColor(Color.parseColor("#FF4545"));
+                    message.setText("Debe ingresar el id del libro a buscar...");
+                }
+            }
+        });
+
         bSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

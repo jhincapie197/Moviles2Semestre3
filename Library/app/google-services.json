@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "734166495709",
-    "project_id": "prjlibrarymovmierc",
-    "storage_bucket": "prjlibrarymovmierc.appspot.com"
+    "project_number": "1014844504514",
+    "project_id": "myprojectmierc",
+    "storage_bucket": "myprojectmierc.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:734166495709:android:06239d2a9c1ac7cc624634",
+        "mobilesdk_app_id": "1:1014844504514:android:7084f9c319db709c14fe5b",
         "android_client_info": {
           "package_name": "com.example.library"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBR2ikutHWHd_XuIsCf4qJO0XbW9mFvAzE"
+          "current_key": "AIzaSyD5pV_God2z8Vp48OtDejWFnEdaCotHXBc"
         }
       ],
       "services": {
