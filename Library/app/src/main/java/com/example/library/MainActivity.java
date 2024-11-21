@@ -1,5 +1,6 @@
 package com.example.library;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     // Instanciar objeto de FirebaseFirestore para acceder a la base de datos Firestore
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     boolean mFound;
+    String idAutomatic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,81 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> arrayadp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_checked,arrayEditorial);
         editorial.setAdapter(arrayadp);
         // Eventos de cada botón
+        bDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!idBook.getText().toString().isEmpty()){
+                    // Crear el diálogo de confirmación
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setMessage("¿Estás seguro de que deseas eliminar este libro con id: " + idBook.getText().toString() + "?")
+                            .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Proceder a eliminar el libro
+                                    db.collection("book")
+                                            .document(idAutomatic)
+                                            .delete()
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    idBook.setText("");
+                                                    name.setText("");
+                                                    author.setText("");
+                                                    message.setTextColor(Color.parseColor("#31511E"));
+                                                    message.setText("Libro borrado con éxito...");
+                                                }
+                                            });
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // El usuario canceló la eliminación, no hacer nada
+                                }
+                            })
+                            .show(); // Mostrar el diálogo
+                }
+                else{
+                    message.setTextColor(Color.parseColor("#FF4545"));
+                    message.setText("Debe ingresar el id del libro a borrar...");
+                }
+            }
+        });
+        bEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mIdBook = idBook.getText().toString();
+                String mName = name.getText().toString();
+                String mAuthor = author.getText().toString();
+                String mEditorial = editorial.getSelectedItem().toString();
+                int mAvailable = savailable.isChecked() ? 1 : 0;
+                if (checkDataBook(mIdBook, mName, mAuthor)){
+                    //Actualizar los datos del libro
+                    Map<String, Object> mapBook = new HashMap<>();
+                    // asignar a cada key su valor respectivo
+                    mapBook.put("idbook", mIdBook);
+                    mapBook.put("name", mName);
+                    mapBook.put("author", mAuthor);
+                    mapBook.put("editorial", mEditorial);
+                    mapBook.put("available", mAvailable);
+                    //Actualizar el libro con el objeto mapBook
+                    db.collection("book")
+                            .document(idAutomatic)
+                            .set(mapBook)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    message.setTextColor(Color.parseColor("#31511E"));
+                                    message.setText("Libro ACTUALIZADO de manera exitosa");
+                                }
+                            });
+                }
+                else{
+                    message.setTextColor(Color.parseColor("#FF4545"));
+                    message.setText("Debe ingresar todos los datos del libro a modificar...");
+                }
+            }
+        });
         bSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +162,8 @@ public class MainActivity extends AppCompatActivity {
                                     if (task.isSuccessful()){
                                         if (!task.getResult().isEmpty()){
                                             for (QueryDocumentSnapshot document: task.getResult()){
+                                                //Capturar el id automatico en la variable idAutomatic
+                                                idAutomatic = document.getId();
                                                 name.setText(document.getString("name"));
                                                 author.setText(document.getString("author"));
                                                 editorial.setSelection(document.getString("editorial").equals("Oveja Negra")? 0 : 1);
